@@ -41,10 +41,10 @@ data_b = [  %% (Pd and Qd are specified in kW & kVAr here)
 	32	1	210	100	0	0	1	1	0	12.66	1	1.07	0.93;
 	33	1	60	40	0	0	1	1	0	12.66	1	1.07	0.93;
 ];
-data_b (:,3:4) = data_b (:,3:4)/1000; %化成MW
+data_b (:,3:4) = data_b (:,3:4)/1000; %converted into MW
 data_b (:,3:4) = data_b (:,3:4)/baseMVA;
 data_b (:,4) = data_b (:,4)/2;
-%% generator data   第一个slack节点看作一个发电机就行;cost跟电价相同
+%% generator data   Treat slack bus as a generator; unit cost is electricity price
 %	bus	P_max(MW) P_min	Qmax Qmin Cost($/MWh) % node / ^2/^1/^0
 data_g = [
       1	   4  0	  4  -4  0     80    0
@@ -73,7 +73,7 @@ data_s = [
 data_s (:,2:3) = data_s (:,2:3)/baseMVA;
 
 
-%% branch data  此问题用I的上限 
+%% branch data  
 %	fbus	tbus	r	x	b	rateA	rateB	rateC	ratio	angle	status	angmin	angmax
 I_1 = 0.595/baseKA;
 I_2 = 0.160/baseKA;    
